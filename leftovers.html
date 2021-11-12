@@ -1,0 +1,139 @@
+<h3 class="flower-card-title">Vína</h3>
+<h3 class="flower-card-title">Balónky</h3>
+<h3 class="flower-card-title">Plyšáci</h3>
+<h3 class="flower-card-title">Bonbóny</h3>
+
+
+<div class="d-flex col-12 col-md-3 flower-card wines">
+    <div class="flower-card-image-holder">
+        <a href="<?php echo $product_link ?>"><img class="flower-card-image" src="<?php echo $image_url ?>" alt="Růže" width="100%"></a>
+    
+        <div class="flower-card-overlay">
+        <a style="text-decoration: none;" href="<?php echo $product_link ?>"><h4 class="flower-card-title"><?php echo $name ?></h4></a>							
+            <a href="?add-to-cart=<?php echo $product_id ?>" class="btn btn-primary btn-card-front btn-lg">Koupit za <?php echo $price ?> Kč</a>
+        </div>
+    </div>
+</div>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark" >
+           
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navigation" class="collapse navbar-collapse flex-column" >
+
+
+
+<nav id="site-navigation" class="main-navigation col-md-10 col-sm-4 align-items-center bg-header">
+    <div class="menu-holder d-flex justify-content-center">
+        <div class="menu-items-list">
+            <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+            <i class="bi bi-menu-app"><?php esc_html_e( '', 'pinkpetals' ); ?></i></button>
+
+
+            $products = wc_get_products($wines);
+
+			$number_of_wines = count($products);
+			$counter = 0;
+			while ($counter <= $number_of_wines-1) {
+				$product = wc_get_product($products[$counter]);
+				$name = $product->get_name();
+				$price = $product->get_price();
+				$product_slug = $product->get_slug();
+				$product_description = $product->get_description();
+				$product_id = $product->get_id();
+				$product_image = $product->get_image($size['woocommerce_single']);
+				$image_id  = $product->get_image_id();
+				$image_url = wp_get_attachment_image_url( $image_id, 'full' );
+				$product_link= get_permalink($product_id);
+				//$price = wc_price( wc_get_price_to_display( $product, array( 'price' => $product->get_regular_price() ) ) );
+				
+				//print_r($product_image);
+				$counter++; ?>
+
+
+                ?>
+					<?php
+					wp_reset_postdata();
+				$products = wc_get_products($wines);
+
+				$number_of_wines = count($products);
+				$counter = 0;
+				if ($wines->have_posts()) :
+
+				while ($wines->have_posts()):
+					$wines ->the_post(); 
+					/* {
+					$product = wc_get_product($products[$counter]);
+					$name = $product->get_name();
+					$price = $product->get_price();
+					$product_slug = $product->get_slug();
+					$product_description = $product->get_description();
+					$product_id = $product->get_id();
+					$product_image = $product->get_image($size['woocommerce_single']);
+					$image_id  = $product->get_image_id();
+					$image_url = wp_get_attachment_image_url( $image_id, 'full' );
+					$product_link= get_permalink($product_id);
+					//$price = wc_price( wc_get_price_to_display( $product, array( 'price' => $product->get_regular_price() ) ) );
+					
+					//print_r($product_image);
+					$counter++; ?>*/?>
+					
+					
+				
+				
+				
+				
+					
+				<?php endwhile;
+				echo paginate_links(array(
+					'total'=>$wines->max_num_pages
+				));
+			endif;
+
+
+            <?php if ($product->get_type() == 'simple') {// (for simple product)?>
+                <a href="?add-to-cart=<?php echo $post->ID ?>" class="btn btn-primary btn-product-loop btn"><i class="bi bi-cart-plus"></i>&nbsp<?php  echo $price?> Kč</a>
+            <?php }else {?>
+                <a href="<?php the_permalink() ?>" class="btn btn-primary btn-product-loop btn">Vybrat opci</a>
+            <?php}
+            endif;?>
+
+
+            /*$wines = array (
+					'post_type' => 'product',
+					'category' => array ('vina','darkove-kytice'),
+					'posts_per_page' => 16,
+					'page' => $ourCurrentPage
+				);*/
+
+
+                /*'tax_query' => array(
+						array(
+							'taxonomy'      => 'product_cat',
+							'field' => 'term_id', //This is optional, as it defaults to 'term_id'
+							'terms'         => 'darkove-kytice',
+							'operator'      => 'IN' // Possible values are 'IN', 'NOT IN', 'AND'.
+						), array(
+							'taxonomy'      => 'product_visibility',
+							'field'         => 'slug',
+							'terms'         => 'exclude-from-catalog', // Possibly 'exclude-from-search' too
+							'operator'      => 'NOT IN'
+						)
+						),*/
+
+
+
+                        /*$product = wc_get_product($products);
+							$name = $product->get_name();*/
+							$price = $product->get_price();
+							/*$product_slug = $product->get_slug();
+							$product_description = $product->get_description();
+							$product_id = $product->get_id();
+							$product_image = $product->get_image($size['woocommerce_single']);
+							$image_id  = $product->get_image_id();
+							$image_url = wp_get_attachment_image_url( $image_id, 'full' );
+							$product_link= get_permalink($product_id);
+							$counter++;*/
