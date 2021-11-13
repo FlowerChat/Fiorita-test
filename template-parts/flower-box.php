@@ -6,7 +6,7 @@
     
         <div class="flower-card-overlay">
                                         
-            <a href="https://fiorita.cz/kvetiny-v-krabicich/" class="btn btn-primary btn-card-front btn-lg">Vybrat květinovou krabici&nbsp&nbsp<i class="bi bi-arrow-right-circle"></i></a>
+            <a href="http://localhost/test-fiorita/kvetiny-v-krabicich/" class="btn btn-primary btn-card-front btn-lg">Vybrat květinovou krabici&nbsp&nbsp<i class="bi bi-arrow-right-circle"></i></a>
         </div>
     </div>
 </div>

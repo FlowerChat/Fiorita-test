@@ -382,3 +382,25 @@ span.page-numbers.current {
 .footer-contacts {
     margin: 2rem;
 }
+
+
+/*product type pages*/
+
+.flower-boxes-products {
+    justify-content: center;
+}
+
+.always-available {
+    flex-wrap:wrap;
+}
+
+.everyday-offer {
+    width: 100%;
+    text-align: center;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 10px 10px 10px rgba(38, 0, 0,1);
+    .p {
+        font-size: 0.7rem;
+    }
+}
