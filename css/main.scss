@@ -135,6 +135,18 @@ a:hover {
 .header-items-holder {
     align-items:center;
 }
+/*page title*/
+
+.page-title {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    @include media-breakpoint-down (lg) {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+}
+
 /*cart look*/
 
 .btn-cart-totals {
@@ -403,4 +415,17 @@ span.page-numbers.current {
     .p {
         font-size: 0.7rem;
     }
+}
+.popularity-tag {
+    font-size: 0.8rem;
+    margin-left:12px;    
+    border-radius: 5px;
+    padding: 10px 20px;
+    width: fit-content;
+}
+.popularity-popular {
+    background-color: green;
+}
+.popularity-regular {
+    background-color: orange;
 }

@@ -1,18 +1,21 @@
 <?php
 ?>
-<div class="row recently-sold-display g-3" id="products-display">
+<div class="row recommended-wines-display g-3" id="wines-display">
     
 <?php
-//create list of products
+//create list of recommended wines
 
 
-    $ourCurrentPage = max(1, get_query_var('paged'));
+    
             
     $products = new WP_Query(array(
         'post_type' => 'product',
-        'product_cat' => 'kvetiny-v-krabicich',
-        'posts_per_page' => 16,
-        'paged' => $ourCurrentPage
+        'product_cat' => 'vina',
+        'post__in' => array(64651,64655,64884,65188,65185,65184,65180,64888), 
+        'posts_per_page' => 8,
+        'orderby' => 'none',
+        'order' => 'ASC'
+        
     ));
     
         if ( $products->have_posts() ) :
@@ -52,27 +55,12 @@
 
 
         </div>
-            <?php endwhile; ?>
-            <div class="row pagination-insert-posts">
-                <?php echo paginate_links(array(
-                'total'=>$products->max_num_pages,
-                'current'=>$ourCurrentPage
-            )); ?>
-
-
-            </div>
-
-            <?php					
+            <?php endwhile; 		
             endif; 
             // reser the_content() to show front page content, otherwise, the last loop product contnet
             wp_reset_postdata();
             ?>
 
-            <script>jQuery('div.recently-sold-display').each(function(_, widget) {
-            // Add the id to the pagination URL
-            jQuery('a.page-numbers', widget).map(function(_, link) {
-                jQuery(link).attr('href', jQuery(link).attr('href') + '#products-display');
-                });
-            });</script>
+            
 
 </div>
