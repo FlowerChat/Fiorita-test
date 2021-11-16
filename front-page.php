@@ -17,15 +17,15 @@ get_header();
 <!---Product categories cards--->
 	 <main id="primary" class="site-main">
 		<div class="container">
-			<section class="front-page-tiles my-5">
-				<div class="row align-items-end gy-4 mt-0">					
+			<section class="front-page-tiles">
+				<div class="row  top-products align-items-end gy-4 mt-0">					
 					<?php 
 					get_template_part( 'template-parts/gift-bouquet' ); 
 					get_template_part( 'template-parts/meadow-bouquet' );
 					get_template_part( 'template-parts/flower-box' );
 					?>					
 				</div>
-				<div class="row align-items-end g-4 mt-0">
+				<div class="row top-products align-items-end g-4 mt-0">
 					<?php 
 					get_template_part( 'template-parts/eustomas-card' ); 
 					get_template_part( 'template-parts/roses-card' );

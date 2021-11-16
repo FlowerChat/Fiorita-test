@@ -137,3 +137,38 @@
 							$image_url = wp_get_attachment_image_url( $image_id, 'full' );
 							$product_link= get_permalink($product_id);
 							$counter++;*/
+
+
+							<div class="col-md-2 col-5 d-flex align-items-center">
+								<a href="<?php echo wc_get_cart_url(); ?>" class="btn btn-primary btn-cart-totals"><div class="row cart-holder-row d-flex">
+									
+										
+										
+										
+											<div class="col-5 cart-total-sum">
+												<?php 
+												$cart_items_total=WC()->cart->get_cart_total();
+												echo $cart_items_total?>							
+											</div>
+											
+											<div class="col-7">
+												<div class="cart-symbol">
+													<i class="bi bi-cart cart-icon-menu p-2"></i>
+												
+													<div class="cart-content-number">
+														<?php $cart_items_number=WC()->cart->get_cart_contents_count();						
+														echo $cart_items_number?>
+													</div>
+												</div>
+				
+											</div>
+				
+									</div>
+								</a>
+				
+									
+									
+								
+								
+				
+							</div>	

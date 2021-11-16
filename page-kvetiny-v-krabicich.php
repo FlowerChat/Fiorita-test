@@ -18,7 +18,7 @@ get_header();
         
         </section>
         
-        <section class="products-flower-boxes" id="boxes-display">
+        <section class="products-flower-boxes mt-5 mb-5" id="boxes-display">
             <div class="row type-availability mt-1 mb-1">
                 <h2 class="product-popularity">Všechny produkty</h2>
                 <p class="popularity-tag popularity-regular">Objednávejte min. 1-2 dny předem, dnes doručíme s úpravami</p>
@@ -29,7 +29,7 @@ get_header();
                 ?>
             
         </section>
-        <section class="products-flower-boxes" id="boxes-display">
+        <section class="products-flower-boxes mt-5 mb-5" id="boxes-display">
             <div class="row type-availability mt-1 mb-1">
                 <h2 class="product-popularity">Vína ke květinám</h2>
                 
@@ -40,6 +40,18 @@ get_header();
                 ?>
             
         </section>
+        <section class="products-flower-boxes mt-5 mb-5" id="boxes-display">
+            <div class="row type-availability mt-1 mb-1">
+                <h2 class="product-popularity">Všechny doplňky</h2>
+                
+            </div>   
+            
+                <?php
+                    get_template_part( 'template-parts/additional-products' );
+                ?>
+            
+        </section>
+        
         <section class ="page-main-content" id="flower-boxes-text">
             <div class="row">
                 <div class="front-page-content">

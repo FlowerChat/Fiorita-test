@@ -24,8 +24,8 @@ $theme-colors: (
 
 
 $custom-color: (
-    "icon-background":white,
-    "announcement-background":rgb(38,0,0)
+    "icon-background": $body-color,
+    "announcement-background":$header-bg
 );
 
 // Merge maps
@@ -119,13 +119,13 @@ a:hover {
     text-transform: uppercase;
     padding: 0 1.2rem;
     .current_page_item {
-        background-color:rgb(80, 0, 13);
+        background-color:$body-bg;
     }
     .page_item {
         padding: 0.6rem 1.2rem;
     }
     .menu-toggle {
-        background-color:rgb(38, 0, 0);
+        background-color: $header-bg;
         border:none;
         color:white;
 
@@ -151,10 +151,19 @@ a:hover {
 
 .btn-cart-totals {
     margin: 0.5rem;
+    display:inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-content: stretch;
+}
+.cart-total-sum {
+    margin-right: 0.3rem;
+    display: inline-block;
 }
 .cart-symbol {
     
     position:relative;
+    display: inline-block;
 
 }
 .cart-icon-menu, .cart-total-sum {
@@ -162,13 +171,16 @@ a:hover {
     font-weight: 700;
     text-align: right;
 }
+.cart-icon-menu {
+    font-size: 1.5rem;
+}
 .cart-content-number {
     position:absolute;
     top:0;
     right:0;
-    background-color:rgb(38, 0, 0);
+    background-color: $body-bg;
     padding: 0.25rem 0.5rem;
-    font-size: 0.5rem;
+    font-size: 0.6rem;
     border-radius:50%;
 }
 
@@ -179,7 +191,7 @@ a:hover {
 
 }
 .btn:hover {
-    background-color: white;
+    background-color: $body-color;
     color: var(--bs-orange);
     border-width: 1px !important;
     border-color: var (--bs-orange);
@@ -189,8 +201,18 @@ a:hover {
 /* Front page Cards */
 
 .front-page-tiles {
-    margin-top: 1rem;
+    margin-top: 3rem;
     margin-bottom: 2rem;
+    @include media-breakpoint-down (lg) {
+        margin-top: 0.5rem;
+
+    }
+}
+.top-products {
+    @include media-breakpoint-down (lg) {
+        --bs-gutter-y: 0.5rem;
+
+    }
 }
 
 /*flower card management*/
@@ -201,6 +223,12 @@ a:hover {
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 10px 10px 10px rgba(38, 0, 0,1);
+    @include media-breakpoint-down (lg) {
+        max-height: 30vh;
+        overflow: hidden;
+        align-content: center;
+        align-items:center;
+    }
     
 }
 
@@ -300,7 +328,7 @@ a:hover {
 .page-numbers {
     text-decoration: none;
     font-size: 1.5rem;
-    background-color:rgb(38, 0, 0);
+    background-color: $body-bg;
     border-radius:5px;
     
 }
