@@ -12006,7 +12006,7 @@ a:hover {
   position: absolute;
   top: 0;
   right: 0;
-  background-color: #260000;
+  background-color: #50000d;
   padding: 0.25rem 0.5rem;
   font-size: 0.6rem;
   border-radius: 50%;
@@ -12157,6 +12157,9 @@ a:hover {
   margin: 10px 0;
   padding: 0;
   width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .product-name {
@@ -12183,7 +12186,7 @@ a:hover {
 .page-numbers {
   text-decoration: none;
   font-size: 1.5rem;
-  background-color: #260000;
+  background-color: #50000d;
   border-radius: 5px;
 }
 
@@ -12337,5 +12340,27 @@ span.page-numbers.current {
 
 .popularity-regular {
   background-color: orange;
+}
+
+/*single product template*/
+.mobile-product-card-title {
+  display: none;
+}
+
+@media (max-width: 991.98px) {
+  .mobile-product-card-title {
+    display: block;
+    text-align: center;
+  }
+}
+
+.product-title-lg {
+  text-align: center;
+}
+
+@media (max-width: 991.98px) {
+  .product-title-lg {
+    display: none;
+  }
 }
 /*# sourceMappingURL=main.css.map */

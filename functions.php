@@ -225,18 +225,24 @@ add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 
 /*shop archive loop disable all  testing*/
 
-remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
-remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+add_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
+
+/*function wrapping_into_container() {
+	echo '<div class="container">';
+}*/
+
+add_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
 remove_action( 'woocommerce_archive_description', 'woocommerce_taxonomy_archive_description', 10 );
 remove_action( 'woocommerce_archive_description', 'woocommerce_product_archive_description', 10 );
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10 );
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
 
-remove_action( 'woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10 ); 
+add_action( 'woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10 ); 
 
 remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
 add_action( 'woocommerce_before_shop_loop_item_title', 'custom_loop_product_image', 10 );
+
 function custom_loop_product_image() {
     global $product;
     $size = 'woocommerce_single';
@@ -250,11 +256,17 @@ remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_prod
 
 add_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
 add_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
-add_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5 );
+remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5 );
 add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
 add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
 add_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination', 10 );
-add_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
+
+
+
+/*function wrapping_into_container_end() {
+	echo '</div>';
+}*/
+
 
 /* remove shop page title*/
 
@@ -268,3 +280,95 @@ function pinkpetals_hide_shop_page_title($title) {
 }
 
 
+
+
+//Removing anything from a product page
+
+// Before content
+remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+remove_action( 'woocommerce_before_single_product', 'woocommerce_output_all_notices', 10 );
+
+add_action('woocommerce_before_main_content', 'pinkpetals_product_open_div', 15); 
+function pinkpetals_product_open_div() {
+	if (! is_product()) {
+		return;
+	}
+	echo '<div class="container">';
+	
+
+}
+  
+// Left column
+remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
+
+add_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20 );
+
+remove_action( 'woocommerce_product_thumbnails', 'woocommerce_show_product_thumbnails', 20 );
+ 
+// Right column
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+ 
+// Right column - add to cart
+do_action( 'woocommerce_before_add_to_cart_form' );
+do_action( 'woocommerce_before_add_to_cart_button' );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+ 
+remove_action( 'woocommerce_simple_add_to_cart', 'woocommerce_simple_add_to_cart', 30 );
+remove_action( 'woocommerce_grouped_add_to_cart', 'woocommerce_grouped_add_to_cart', 30 );
+remove_action( 'woocommerce_variable_add_to_cart', 'woocommerce_variable_add_to_cart', 30 );
+remove_action( 'woocommerce_external_add_to_cart', 'woocommerce_external_add_to_cart', 30 );
+remove_action( 'woocommerce_single_variation', 'woocommerce_single_variation', 10 );
+remove_action( 'woocommerce_single_variation', 'woocommerce_single_variation_add_to_cart_button', 20 );
+do_action( 'woocommerce_before_quantity_input_field' );
+do_action( 'woocommerce_after_quantity_input_field' );
+do_action( 'woocommerce_after_add_to_cart_button' );
+do_action( 'woocommerce_after_add_to_cart_form' );
+ 
+// Right column - meta
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+do_action( 'woocommerce_product_meta_start' );
+do_action( 'woocommerce_product_meta_end' );
+ 
+// Right column - sharing
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50 );
+do_action( 'woocommerce_share' );
+ 
+// Tabs, upsells and related products
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
+remove_action( 'woocommerce_product_additional_information', 'wc_display_product_attributes', 10 );
+do_action( 'woocommerce_product_after_tabs' );
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+ 
+// Reviews
+remove_action( 'woocommerce_review_before', 'woocommerce_review_display_gravatar', 10 );
+remove_action( 'woocommerce_review_before_comment_meta', 'woocommerce_review_display_rating', 10 );
+remove_action( 'woocommerce_review_meta', 'woocommerce_review_display_meta', 10 );
+do_action( 'woocommerce_review_before_comment_text', $comment );
+remove_action( 'woocommerce_review_comment_text', 'woocommerce_review_display_comment_text', 10 );
+do_action( 'woocommerce_review_after_comment_text', $comment );
+ 
+// After content
+do_action( 'woocommerce_after_single_product' );
+do_action( 'woocommerce_after_main_content' );
+
+//Building a page again
+
+
+
+
+
+
+add_action('woocommerce_after_main_content', 'pinkpetals_product_close_div', 50); 
+function pinkpetals_product_close_div() {
+	if (! is_product()) {
+		return;
+	}
+	echo '</div>';
+	
+	
+}

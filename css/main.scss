@@ -305,6 +305,7 @@ a:hover {
     margin: 10px 0;
     padding: 0;
     width:100%;
+    justify-content: center;
 
 }
 .product-name {
@@ -456,4 +457,22 @@ span.page-numbers.current {
 }
 .popularity-regular {
     background-color: orange;
+}
+
+
+/*single product template*/
+.mobile-product-card-title {
+    display: none;
+    @include media-breakpoint-down (lg) {
+        display: block;
+        text-align: center;
+    }
+}
+
+.product-title-lg {
+    text-align: center;
+    @include media-breakpoint-down (lg) {
+        display: none;
+        
+    }
 }

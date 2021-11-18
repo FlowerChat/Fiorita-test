@@ -1,8 +1,9 @@
 <?php
 ?>
 <!--- additional products cards to show  with get function--->
-<section class="additional-products my-5">
+			<section class="additional-products my-5">
 				<h3 class="subheader-front">Doplňky ke květinám</h3>
+				
 				<div class="row align-items-end g-4">
 					<div class="d-flex col-6 col-md-3 flower-card wine">
 						<div class="flower-card-image-holder">

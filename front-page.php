@@ -35,7 +35,8 @@ get_header();
 			</section>
 
 
-<!---Calling additional products and contacts blocks from another phps--->			
+<!---Calling additional products and contacts blocks from another phps--->	
+					
 			<?php
 				get_template_part( 'template-parts/additional-products' );
 				get_template_part( 'template-parts/contact-block' );				
