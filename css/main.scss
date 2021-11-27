@@ -476,3 +476,54 @@ span.page-numbers.current {
         
     }
 }
+
+/*checkout forms woocommerce
+
+*/
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.billing-float-left {
+    
+    float:left;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    width: 40%;
+    .input-text{
+        width:100%;
+    }
+    
+    @include media-breakpoint-down (lg) {
+        float:left;
+        width:100%;
+        
+        
+    }
+}
+.billing-float-right {
+    float:right; 
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: 40%;
+    .input-text{
+        width:100%;
+    }
+        
+    @include media-breakpoint-down (lg) {
+        float:left;
+        width:100%;
+        
+        
+    }
+    
+}
+.shipping-wrap {
+    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+}

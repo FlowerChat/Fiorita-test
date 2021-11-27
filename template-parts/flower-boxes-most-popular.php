@@ -3,14 +3,25 @@
 ?>
 <div class="row d-flex g-3">                
     <?php
+        
 
         $boxesToday = new WP_Query(array(
             'post_type' => 'product',
-            //'product_cat' => 'kvetiny-v-krabicich',
-            'post__in' => array(65001,65038,64812), 
+            'tax_query' => array(
+                array(
+                        'taxonomy' => 'product_cat',
+                        'field' => 'id',
+                        'terms' => array( 187,260 ),
+                        'operator' => 'AND'
+                )
+            ),
             'posts_per_page' => 3,
+            'orderby' => 'rand'
+            
+            
             
         ));
+        
 
             if ( $boxesToday->have_posts() ) :
                 $counter = 0;

@@ -19,15 +19,16 @@ get_header();
 
 <main id="primary" class="site-main">
     <div class="container">
+        
         <h1 class="page-title"><?php echo the_title();?></h1>
 		<?php
 				$page=get_post();
 				$pageID=$page->ID;
 				$flowerPages = array(64715,64704,64700);
-				$sympathyPages = array(65233);
-				$isSympathy = in_array($pageID, $sympathyPages);
+				$noshowPages = array(65233,31,32);
+				$isNoshow = in_array($pageID, $noshowPages);
 				
-				if ($isSympathy != 1) {?>
+				if ($isNoshow != 1) {?>
         <section class="most-popular mt-5 mb-5">
             <div class="row type-availability mt-1 mb-1">
                 <h2 class="product-popularity">Nejpopulárnější</h2>
@@ -98,10 +99,7 @@ get_header();
     
 </main>
 
-<?php
-get_sidebar();
-get_footer();
-?>
+
 
 <?php
 get_sidebar();

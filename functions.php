@@ -70,6 +70,17 @@ if ( ! function_exists( 'pinkpetals_setup' ) ) :
 				'script',
 			)
 		);
+		add_theme_support( 'post-formats', [
+            'aside',
+            'gallery',
+            'link',
+            'image',
+            'quote',
+            'status',
+            'video',
+            'audio',
+            'chat'
+        ] );
 
 		// Set up the WordPress core custom background feature.
 		add_theme_support(
@@ -289,7 +300,7 @@ remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 
 remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 remove_action( 'woocommerce_before_single_product', 'woocommerce_output_all_notices', 10 );
 
-add_action('woocommerce_before_main_content', 'pinkpetals_product_open_div', 15); 
+/*add_action('woocommerce_before_main_content', 'pinkpetals_product_open_div', 15); 
 function pinkpetals_product_open_div() {
 	if (! is_product()) {
 		return;
@@ -297,12 +308,12 @@ function pinkpetals_product_open_div() {
 	echo '<div class="container">';
 	
 
-}
+}*/
   
 // Left column
 remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
 
-add_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20 );
+remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20 );
 
 remove_action( 'woocommerce_product_thumbnails', 'woocommerce_show_product_thumbnails', 20 );
  
@@ -363,7 +374,7 @@ do_action( 'woocommerce_after_main_content' );
 
 
 
-add_action('woocommerce_after_main_content', 'pinkpetals_product_close_div', 50); 
+/*add_action('woocommerce_after_main_content', 'pinkpetals_product_close_div', 50); 
 function pinkpetals_product_close_div() {
 	if (! is_product()) {
 		return;
@@ -371,4 +382,66 @@ function pinkpetals_product_close_div() {
 	echo '</div>';
 	
 	
+}*/
+/*woocommerce checkout
+
+*/
+
+/* remove unnecessary billing fields*/
+
+add_filter( 'woocommerce_checkout_fields', 'pinkpetals_checkout_remove_fields', 9999 );
+ 
+function pinkpetals_checkout_remove_fields( $woo_checkout_fields_array ) {
+ 
+	// she wanted me to leave these fields in checkout
+	// unset( $woo_checkout_fields_array['billing']['billing_first_name'] );
+	// unset( $woo_checkout_fields_array['billing']['billing_last_name'] );
+	// unset( $woo_checkout_fields_array['billing']['billing_phone'] );
+	// unset( $woo_checkout_fields_array['billing']['billing_email'] );
+	// unset( $woo_checkout_fields_array['order']['order_comments'] ); // remove order notes
+ 
+	// and to remove the billing fields below
+	unset( $woo_checkout_fields_array['billing']['billing_company'] ); // remove company field
+	unset( $woo_checkout_fields_array['billing']['billing_country'] );
+	unset( $woo_checkout_fields_array['billing']['billing_address_1'] );
+	unset( $woo_checkout_fields_array['billing']['billing_address_2'] );
+	unset( $woo_checkout_fields_array['billing']['billing_city'] );
+	unset( $woo_checkout_fields_array['billing']['billing_state'] ); // remove state field
+	unset( $woo_checkout_fields_array['billing']['billing_postcode'] ); // remove zip code field
+	unset( $woo_checkout_fields_array['shipping']['shipping_company'] );
+	unset( $woo_checkout_fields_array['shipping']['shipping_address_2'] );
+ 
+	return $woo_checkout_fields_array;
 }
+
+// change order of the shipping fields//
+// 
+// 
+add_filter( 'woocommerce_checkout_fields' , 'shipping_fields_new_order', 9999 );
+ 
+function shipping_fields_new_order( $f ) {
+ 
+	$f['shipping']['shipping_phone']['class'][0] = 'form-row-first';
+	$f['shipping']['shipping_country']['class'][0] = 'form-row-last';
+	$f['shipping']['shipping_postcode']['class'][0] = 'form-row-first';
+	$f['shipping']['shipping_city']['class'][0] = 'form-row-last';
+	$f['shipping']['shipping_address_1']['class'][0] = 'form-row-wide';
+ 
+	return $f;
+ 
+}
+
+/*shipping phone on checkout
+
+*/
+add_filter( 'woocommerce_checkout_fields', 'pinkpetals_shipping_phone_checkout' );
+
+function pinkpetals_shipping_phone_checkout( $fields ) {
+	$fields['shipping']['shipping_phone'] = array(
+	   'label' => __( 'Telefon' ),
+	   'required' => true,
+	   'class' => array( 'form-row-first' ),
+	   'priority' => 25,
+	);
+	return $fields;
+ }

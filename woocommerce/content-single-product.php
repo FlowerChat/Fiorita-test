@@ -31,55 +31,55 @@ global $product;
                                             
             ?>
                 <div class="product-card-holder d-flex">
-            <div class="product-card-holder-bg d-flex">
-                <div class="product-image-price d-flex">
-                    <div class="product-image">
-                        <a href="<?php the_permalink() ?>"><img class="product-card-image" src="<?php echo wp_get_attachment_url(get_post_thumbnail_id($post->ID)) ?>" alt="Produkt" width="100%"></a>
-                    </div>
-                    
-                    <div class="row product-name-price g-0">
-                        <div class="col-12 col-md-6 mobile-product-card-title">
+					<div class="product-card-holder-bg d-flex">
+						<div class="product-image-price d-flex">
+							<div class="product-image">
+								<a href="<?php the_permalink() ?>"><img class="product-card-image" src="<?php echo wp_get_attachment_url(get_post_thumbnail_id($post->ID)) ?>" alt="Produkt" width="100%"></a>
+							</div>
 							
-								<h1 class="product-card-title"><?php the_title() ?></h1>
-							
-                            
-                        </div>
-                        <div class="col-12 col-md-6 product-price-buy">
-                            <?php if ($product->get_type() == 'simple') { ?>
-                            <a href="?add-to-cart=<?php echo $post->ID ?>" class="btn btn-primary btn-product-loop btn">Koupit za&nbsp<?php  echo $price?> Kč</a><?php ;
-                            } else {?>
-                            <a href="<?php the_permalink() ?>" class="btn btn-primary btn-product-loop btn">Varianty</a><?php ;
+							<div class="row product-name-price g-0">
+								<div class="col-12 col-md-6 mobile-product-card-title">							
+										<h1 class="product-card-title"><?php the_title() ?></h1>
+								</div>
+								<div class="col-12 col-md-6 product-price-buy">
+									<?php if ($product->get_type() == 'simple') { ?>
+									<a href="?add-to-cart=<?php echo $post->ID ?>" class="btn btn-primary btn-product-loop btn">Koupit za&nbsp<?php  echo $price?> Kč</a><?php ;
+									} else {?>
+									<a href="<?php the_permalink() ?>" class="btn btn-primary btn-product-loop btn">Varianty</a><?php ;
 
-                            }?>
-                        </div>
-                    </div>
+									}?>
+								</div>
+							</div>
 
-                </div>
-            </div>
-            
-            
-
-
-
-
-        </div>
-            
-
+						</div>
+					</div>
+				</div>
 		</div>
-		<div class="col-12 col-md-6">
+		<div class="col-12 col-md-6 d-flex align-items-center">
 			<div class="product-description">
 				<h1 class="product-title-lg">
 					<?php the_title(); ?>	
 				</h1>
 			<p class="product-long-description"><?php the_content(); ?></p>
+			</div>
 		</div>
 			
 			
 			
-		</div>
 	</div>
-	<div class="additional-products">
+	
+	<div class="additional-products mt-5 mb-5">
 		<?php get_template_part ('template-parts/additional-products');?>
+	</div>
+	<div class="related-products related-bouquets mt-5 mb-5">
+		<?php get_template_part('template-parts/flower-boxes-most-popular');?>
+	</div>
+	<div class="related-products related-boxes mt-5 mb-5">
+		<?php get_template_part('template-parts/flower-boxes-most-popular');?>
+	</div>
+	<div class="related-products related-roses mt-5 mb-5">
+		<?php get_template_part('template-parts/all-roses-most-popular');?>
+
 	</div>
 	<p class="breadcrumds"><?php woocommerce_breadcrumb();?>
 
